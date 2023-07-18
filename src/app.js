@@ -1,8 +1,8 @@
 const express = require("express");
 
 const { auth } = require("express-oauth2-jwt-bearer");
-const errorHandler = require("./middlewares/errorHandler");
 
+const errorHandler = require("./middlewares/errorHandler");
 
 require('dotenv').config();
 
@@ -13,7 +13,6 @@ const autenticacion = auth({
   tokenSigningAlg: "RS256",
 });
 
-
 const app = express();
 app.use(express.json());
 
@@ -21,7 +20,7 @@ app.use(express.json());
 const librosRouter = require("./routes/libros");
 
 //Configuramos el middleware de autenticacion
-app.use("/api/libros", autenticacion,  librosRouter);
+app.use("/api/libros", autenticacion, librosRouter);
 
 app.use(errorHandler);
 
