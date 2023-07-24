@@ -8,8 +8,7 @@ const libroModel = require("../../src/models/libroModel");
 // Mockup de Autenticación
 jest.mock("express-oauth2-jwt-bearer", () => {
     return {
-        auth: jest.fn().mockImplementation(() => (req, res, next) =>
-            next()),
+        auth: jest.fn().mockImplementation(() => (req, res, next) => next()),
         requiredScopes: jest.fn().mockImplementation(() => (req, res, next) => next()),
     };
 });

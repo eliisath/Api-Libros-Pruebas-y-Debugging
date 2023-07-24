@@ -7,10 +7,10 @@ const errorHandler = require("./middlewares/errorHandler");
 require('dotenv').config();
 
 // Configuracion Middleware con el Servidor de Autorización 
-const autenticacion = auth({
-  audience: process.env.OAUTH_AUDIENCE,
-  issuerBaseURL: process.env.OAUTH_URL,
-  tokenSigningAlg: "RS256",
+const jwtCheck = auth({
+  audience: 'https://localhost:3000/api/libros',
+  issuerBaseURL: 'https://dev-lkfqum3zbxve2law.us.auth0.com/',
+  tokenSigningAlg: 'RS256'
 });
 
 const app = express();
@@ -20,7 +20,7 @@ app.use(express.json());
 const librosRouter = require("./routes/libros");
 
 //Configuramos el middleware de autenticacion
-app.use("/api/libros", autenticacion, librosRouter);
+app.use("/api/libros", jwtCheck, librosRouter);
 
 app.use(errorHandler);
 
